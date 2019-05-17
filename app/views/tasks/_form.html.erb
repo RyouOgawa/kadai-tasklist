@@ -1,20 +1,29 @@
-<%= form_with(model: task, local: true) do |f| %>
-    <% if task.errors.any? %>
-      <div id="error_explanation">
-          <ul>
-              <% task.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-              <% end %>
-          </ul>
+<div class="row">
+  <div class="col-6">
+    <%= form_with(model: task, local: true) do |f| %>
+      <% if task.errors.any? %>
+        <div id="error_explanation" class="alert alert-warning">
+            <ul class="mb-0">
+                <% task.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :status, 'ステータス' %>
+        <%= f.text_field :status, class: 'form-control' %>
       </div>
+    
+      <div class="form-group">
+        <%= f.label :content, 'タスク' %>
+        <%= f.text_field :content, class: 'form-control' %>
+      </div>
+    
+  
+      <%= f.submit '作成', class: 'btn btn-primary' %>
     <% end %>
-  
-  <%= f.label :status, 'ステータス' %>
-  <%= f.text_field :status %>
-  
-  <%= f.label :content, 'タスク' %>
-  <%= f.text_field :content %>
 
-  <%= f.submit '作成' %>
-<% end %>
+  </div>
+</div>
 
